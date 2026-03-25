@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loading...</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      color: #00ffcc;
+      font-family: monospace;
+      overflow: hidden;
+    }
+
+    .fake-loading {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      background: black;
+    }
+
+    .bar {
+      width: 300px;
+      height: 10px;
+      border: 1px solid #00ffcc;
+      margin-top: 20px;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: #00ffcc;
+      transition: width 2s linear;
+    }
+
+    video {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fake-loading">
+    <h1>Initializing System...</h1>
+    <div class="bar">
+      <div class="fill" id="fill"></div>
+    </div>
+  </div>
+
+  <video id="video" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4" />
+  </video>
+
+  <script>
+    const fill = document.getElementById("fill");
+    const video = document.getElementById("video");
+
+    setTimeout(() => {
+      fill.style.width = "100%";
+    }, 500);
+
+    setTimeout(() => {
+      document.querySelector(".fake-loading").style.display = "none";
+      video.style.display = "block";
+    }, 3000);
+  </script>
+
+</body>
+</html>
